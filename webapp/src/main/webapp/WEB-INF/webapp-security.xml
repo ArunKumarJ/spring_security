@@ -6,7 +6,8 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/**" access="none" />
+		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<!-- <security:form-login login-page="/login" /> -->
 	</security:http>
 
 	<security:authentication-manager>
