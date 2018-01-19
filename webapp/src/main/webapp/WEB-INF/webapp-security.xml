@@ -6,18 +6,19 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<!-- <security:form-login login-page="/login" /> -->
+		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+		<security:form-login login-page="/login" login-processing-url="/doLogin" username-parameter="username"
+			password-parameter="password" authentication-failure-url="/login?error"/>
 	</security:http>
 
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="arun" password="{noop}arun" authorities="ROLE_USER" />
-			</security:user-service>
-		</security:authentication-provider>
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="userAuthenticationProvider" />
 	</security:authentication-manager>
 
-	<!-- <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
+	<bean id="userAuthenticationProvider" class="com.app.security.authentication.UserAuthenticationProvider"></bean>
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+
 
 </beans>

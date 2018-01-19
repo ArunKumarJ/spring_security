@@ -5,10 +5,12 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<import resource="webapp-security.xml"/>
-	<context:component-scan base-package="com.app.mvc.controller" />
+	<import resource="spring_entity.xml" />
+	<import resource="webapp-security.xml" />
+	<context:component-scan base-package="com.app" />
 	<mvc:annotation-driven />
 
+	<mvc:resources location="/static/" mapping="/static/**" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/"></property>

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomePageController {
 
-	@RequestMapping("/index")
+	@RequestMapping("/user/index")
 	public String display() {
 
 		return "homePage/homePage";

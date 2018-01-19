@@ -2,9 +2,9 @@ package com.app.security.authentication;
 
 import java.util.Collection;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public interface UserAuthentication extends Authentication {
+public interface AppUserDetails extends UserDetails {
 
 	Collection<? extends GrantedAccess> getAccesses();
 }
